@@ -1,0 +1,3 @@
+[submodule "repos/showtime-example-one"]
+	path = repos/showtime-example-one
+	url = git@github.com:phonetic-tools/showtime-example-one.git

@@ -1,0 +1,18 @@
+{
+  "exclude": [
+    ".*.test.ts$"
+  ],
+  "env": {
+    "targets": {
+      "chrome": "79"
+    },
+    "mode": "entry",
+    "coreJs": 3
+  },
+  "jsc": {
+    "parser": {
+      "syntax": "typescript"
+    },
+    "target": "es2020"
+  }
+}

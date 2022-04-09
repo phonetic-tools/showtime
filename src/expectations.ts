@@ -47,8 +47,6 @@ export async function findExpectation(commits: Commit[], config: Config): Promis
 
     if (!typeName) return previous;
 
-    console.log(config);
-
     const current = getLevelExpectation(config.types[typeName]);
     const modifier = findModifiers(commit.trailers, config);
 

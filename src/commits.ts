@@ -1,6 +1,6 @@
 import { spawn } from 'child_process';
 import { stringifyStream } from './stringify';
-import { parseFormat, stringifyFormat } from './format';
+import { deserialize, serialize } from './serialize';
 
 
 export const KEY_VALUE_SEPARATOR = ':';
@@ -51,7 +51,7 @@ function createTrailerKeyValue(trailer: string): string[] {
  */
 function commitParser(rawCommits: string): Commit[] {
   return splitParser<Commit>(rawCommits, (value) => {
-    const rawCommit = parseFormat<RawCommit>(value);
+    const rawCommit = deserialize<RawCommit>(value);
 
 
     const {
@@ -92,7 +92,7 @@ export async function readCommits(
   repoPath: string = process.cwd(),
   tag?: string,
 ): Promise<Commit[]> {
-  const format = stringifyFormat<RawCommit>({
+  const format = serialize<RawCommit>({
     author: '%aN', // Respecting mailmap
     authoredDate: '%aI',
     committer: '%cN', // Respecting mailmap

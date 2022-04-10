@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    name: Test Node.js ${{ matrix.node_version }} on ${{ matrix.os }}
+    name: Test Node ${{ matrix.node_version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -43,6 +43,29 @@ jobs:
 
       - run: pnpm test
 
-      # Only run lint on the latest Ubuntu Node.js
-      - if: ${{ matrix.os == 'ubuntu-latest' &&	matrix.node_version == 16 }}
-        run: pnpm lint
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6
+
+      - run: pnpm --version
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+
+      - run: node --version
+
+      - run: pnpm install
+
+      - run: pnpm lint

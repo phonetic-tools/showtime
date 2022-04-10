@@ -24,17 +24,20 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node_version }}
-          cache: 'pnpm'
-      - run: node --version
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 6
           run_install: true
+
       - run: pnpm --version
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_version }}
+          cache: 'pnpm'
+
+      - run: node --version
+
       - run: pnpm test

@@ -9,7 +9,3 @@ export function stringifyStream(stream: Stream): Promise<string> {
     stream.on('end', () => resolve(Buffer.concat(chunks).toString()));
   });
 }
-
-export function stringifyFormat<T>(format: T): string {
-  return JSON.stringify(format).replace(/\s+/g, '');
-}

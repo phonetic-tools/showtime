@@ -1,5 +1,6 @@
 import { spawn } from 'child_process';
-import { stringifyFormat, stringifyStream } from './stringify';
+import { stringifyStream } from './stringify';
+import { parseFormat, stringifyFormat } from './format';
 
 
 export const KEY_VALUE_SEPARATOR = ':';
@@ -49,7 +50,10 @@ function createTrailerKeyValue(trailer: string): string[] {
  * Parse string commits into commit objects.
  */
 function commitParser(rawCommits: string): Commit[] {
-  return splitParser<Commit>(rawCommits, (item) => {
+  return splitParser<Commit>(rawCommits, (value) => {
+    const rawCommit = parseFormat<RawCommit>(value);
+
+
     const {
       rawTrailers,
       hash,
@@ -58,7 +62,7 @@ function commitParser(rawCommits: string): Commit[] {
       authoredDate,
       committer,
       committedDate,
-    } = JSON.parse(item) as RawCommit;
+    } = rawCommit;
 
     const trailers = Object.fromEntries(
       splitParser(
@@ -97,6 +101,7 @@ export async function readCommits(
     subject: '%s',
     rawTrailers: `%(trailers:separator=${NEW_LINE_SEPARATOR})`,
   });
+
   const args = [
     'log',
     `--format=${format}`,

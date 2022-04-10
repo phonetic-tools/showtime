@@ -11,6 +11,15 @@ describe(readCommits.name, () => {
 Array [
   Object {
     "author": "Philip Bordallo",
+    "authoredDate": "2022-04-09T20:48:18-04:00",
+    "committedDate": "2022-04-09T20:48:18-04:00",
+    "committer": "GitHub",
+    "hash": "ec8eb4ae4e2e1b54c98bcdca8eb09998cf6c0b96",
+    "subject": "Revert \\"Add feature two (#4)\\" (#5)",
+    "trailers": Object {},
+  },
+  Object {
+    "author": "Philip Bordallo",
     "authoredDate": "2022-04-03T22:41:52-04:00",
     "committedDate": "2022-04-03T22:41:52-04:00",
     "committer": "GitHub",
@@ -74,6 +83,15 @@ Array [
 Array [
   Object {
     "author": "Philip Bordallo",
+    "authoredDate": "2022-04-09T20:48:18-04:00",
+    "committedDate": "2022-04-09T20:48:18-04:00",
+    "committer": "GitHub",
+    "hash": "ec8eb4ae4e2e1b54c98bcdca8eb09998cf6c0b96",
+    "subject": "Revert \\"Add feature two (#4)\\" (#5)",
+    "trailers": Object {},
+  },
+  Object {
+    "author": "Philip Bordallo",
     "authoredDate": "2022-04-03T22:41:52-04:00",
     "committedDate": "2022-04-03T22:41:52-04:00",
     "committer": "GitHub",
@@ -94,6 +112,15 @@ Array [
     const commits = await readCommits();
     expect(commits).toMatchInlineSnapshot(`
 Array [
+  Object {
+    "author": "Philip Bordallo",
+    "authoredDate": "2022-04-09T20:48:18-04:00",
+    "committedDate": "2022-04-09T20:48:18-04:00",
+    "committer": "GitHub",
+    "hash": "ec8eb4ae4e2e1b54c98bcdca8eb09998cf6c0b96",
+    "subject": "Revert \\"Add feature two (#4)\\" (#5)",
+    "trailers": Object {},
+  },
   Object {
     "author": "Philip Bordallo",
     "authoredDate": "2022-04-03T22:41:52-04:00",

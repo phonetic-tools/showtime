@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: CI # Continuous Integration
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    name: Test with Node.js ${{ matrix.node_version }} on ${{ matrix.os }}
+    name: Test Node.js ${{ matrix.node_version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -28,6 +28,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node_version }}
+          cache: 'pnpm'
       - run: node --version
 
       - name: Setup pnpm

@@ -30,7 +30,8 @@
     "start": "pnpm run rollup -- --watch",
     "rollup": "rollup --config ./configs/rollup.config.ts",
     "swc": "swc --config-file ./configs/swc.config.json --out-dir ./dist/ ./src/ ",
-    "test": "jest --config ./configs/jest.config.js"
+    "test": "jest --config ./configs/jest.config.js --colors",
+    "lint": "eslint ./src/"
   },
   "devDependencies": {
     "@jest/globals": "^27.5.1",

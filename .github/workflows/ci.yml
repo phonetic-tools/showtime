@@ -1,4 +1,4 @@
-name: CI # Continuous Integration
+name: CI
 
 on:
   push:
@@ -28,7 +28,6 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 6
-          run_install: true
 
       - run: pnpm --version
 
@@ -39,5 +38,7 @@ jobs:
           cache: 'pnpm'
 
       - run: node --version
+
+      - run: pnpm install
 
       - run: pnpm test

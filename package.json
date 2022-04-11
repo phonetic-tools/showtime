@@ -35,9 +35,9 @@
   },
   "devDependencies": {
     "@jest/globals": "^27.5.1",
-    "@philipbordallo/eslint-config": "^6.0.0",
-    "@philipbordallo/eslint-config-jest": "^6.0.0",
-    "@philipbordallo/eslint-config-typescript": "^6.0.0",
+    "@philipbordallo/eslint-config": "^6.0.2",
+    "@philipbordallo/eslint-config-jest": "^6.0.2",
+    "@philipbordallo/eslint-config-typescript": "^6.0.2",
     "@rollup/plugin-typescript": "^8.3.1",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.165",

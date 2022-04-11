@@ -3,9 +3,9 @@ lockfileVersion: 5.3
 specifiers:
   '@jest/globals': ^27.5.1
   '@manypkg/get-packages': ^1.1.3
-  '@philipbordallo/eslint-config': ^6.0.0
-  '@philipbordallo/eslint-config-jest': ^6.0.0
-  '@philipbordallo/eslint-config-typescript': ^6.0.0
+  '@philipbordallo/eslint-config': ^6.0.2
+  '@philipbordallo/eslint-config-jest': ^6.0.2
+  '@philipbordallo/eslint-config-typescript': ^6.0.2
   '@rollup/plugin-typescript': ^8.3.1
   '@swc/cli': ^0.1.57
   '@swc/core': ^1.2.165
@@ -28,9 +28,9 @@ dependencies:
 
 devDependencies:
   '@jest/globals': 27.5.1
-  '@philipbordallo/eslint-config': 6.0.0_eslint@8.13.0
-  '@philipbordallo/eslint-config-jest': 6.0.0_af0288e4c8962779bb3e3440d3af6586
-  '@philipbordallo/eslint-config-typescript': 6.0.0_ed89a1eabacda6ae8522006d1b3d1b90
+  '@philipbordallo/eslint-config': 6.0.2_eslint@8.13.0
+  '@philipbordallo/eslint-config-jest': 6.0.2_af0288e4c8962779bb3e3440d3af6586
+  '@philipbordallo/eslint-config-typescript': 6.0.2_ed89a1eabacda6ae8522006d1b3d1b90
   '@rollup/plugin-typescript': 8.3.1_8fb0118e9d69f3600cbb8f144f7d456c
   '@swc/cli': 0.1.57_@swc+core@1.2.165
   '@swc/core': 1.2.165
@@ -680,8 +680,8 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
-  /@philipbordallo/eslint-config-jest/6.0.0_af0288e4c8962779bb3e3440d3af6586:
-    resolution: {integrity: sha512-Px/JyCgsb11OzDIXEDxiKB+Dh+GvaVeqjKTHiiEDT0AIr6J7yC7L95tyA6qyd3TLGnNv2YsppBScoURoPu+wmg==}
+  /@philipbordallo/eslint-config-jest/6.0.2_af0288e4c8962779bb3e3440d3af6586:
+    resolution: {integrity: sha512-ov6qXsel17nVUa0roqRbOejpAIZvSZBBXxPyKFZ82vsi+GkWs3DgNV12vT97cBxMkYSlfoRCbIHvnjQWucmf3A==}
     peerDependencies:
       eslint: '>=8'
       eslint-plugin-jest: '>=26'
@@ -692,8 +692,8 @@ packages:
       eslint-plugin-jest-dom: 4.0.1_eslint@8.13.0
     dev: true
 
-  /@philipbordallo/eslint-config-typescript/6.0.0_ed89a1eabacda6ae8522006d1b3d1b90:
-    resolution: {integrity: sha512-vDvQpKE0R0gHRAlX8oOsTLmwdIrkr9pFV9XTyjaAGFVSRp/IJOVHDE+5zi5cpO9OsSJdxyWTtn1GFm2dwPK57w==}
+  /@philipbordallo/eslint-config-typescript/6.0.2_ed89a1eabacda6ae8522006d1b3d1b90:
+    resolution: {integrity: sha512-F/mAqgJdEaiUdiGGNHdKP/HxjAsCLGTFjleieXLJ3shx4sYNNvFBCpKK5Jzuph5UjjcyvyWFnp2EU+2BGn8JoA==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '>=5'
       '@typescript-eslint/parser': '>=5'
@@ -706,8 +706,8 @@ packages:
       typescript: 4.6.3
     dev: true
 
-  /@philipbordallo/eslint-config/6.0.0_eslint@8.13.0:
-    resolution: {integrity: sha512-Xbv8LYR43QI7OFS7fITedQcUD0vkV1iKWVIfcPoNeCsbj3Pey7dYlf03Ls37VYQ/Y1Ya5H1/x2pi/AmFhAdr3g==}
+  /@philipbordallo/eslint-config/6.0.2_eslint@8.13.0:
+    resolution: {integrity: sha512-z8i3wDfBrsLj2thJ9zPF2PwIkuz3T54UU5+TLASu9O0zLjBGwGTT459GpDnHhpL4GHj14CTdOiU4rZoWAoO+XA==}
     peerDependencies:
       eslint: '>=8'
     dependencies:

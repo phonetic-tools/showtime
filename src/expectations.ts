@@ -1,70 +1,54 @@
-import { Commit, Trailer } from './commits';
+import type { Commit, Trailer } from './commits';
 import { Level } from './config';
-import type { Config, LevelName, LevelValue } from './config';
-
+import type { Config } from './config';
+import { LevelValue } from './config';
 
 export type Expectation = {
-  name: LevelName,
-  value: LevelValue,
+  level: Level,
   commit?: Commit,
-  modifier?: keyof Trailer,
+  modifier?: string,
+  modifierContent?: string,
 };
-
-
-function getLevelExpectation(name: LevelName): Expectation {
-  if (!Level[name]) {
-    return { name: 'none', value: 0 };
-  }
-
-  return {
-    name,
-    value: Level[name],
-  };
-}
 
 function findModifiers(trailers: Trailer, config: Config): Expectation {
   const trailerList = Object.keys(trailers);
 
   return trailerList.reduce<Expectation>((previous, trailerName) => {
-    const trailerValue = config.modifiers[trailerName];
-    if (trailerValue) {
-      const { name, value } = getLevelExpectation(trailerValue);
+    const level: Level | undefined = config.modifiers?.[trailerName];
 
-      return {
-        name,
-        value,
-        modifier: trailerName,
-      };
+    if (level) {
+      return { level, modifier: trailerName };
     }
 
     return previous;
-  }, { name: 'none', value: 0 });
+  }, { level: Level.none });
 }
 
 export async function findExpectation(commits: Commit[], config: Config): Promise<Expectation> {
   return commits.reduce<Expectation>((previous, commit) => {
-    const typeName = commit.trailers.Type;
+    const typeName: string | undefined = commit.trailers.Type;
 
     if (!typeName) return previous;
 
-    const current = getLevelExpectation(config.types[typeName]);
-    const modifier = findModifiers(commit.trailers, config);
+    const currentLevel = config.types[typeName];
+    const { level: modifierLevel, modifier } = findModifiers(commit.trailers, config);
 
-    if (modifier.value > current.value) {
+    if (LevelValue[modifierLevel] > LevelValue[currentLevel]) {
       return {
         commit,
-        ...modifier,
+        level: modifierLevel,
+        modifier,
+        modifierContent: commit.trailers[modifier as string],
       };
     }
 
-    if (current.value > previous.value) {
+    if (LevelValue[currentLevel] > LevelValue[previous.level]) {
       return {
         commit,
-        name: current.name,
-        value: current.value,
+        level: currentLevel,
       };
     }
 
     return previous;
-  }, { name: 'none', value: 0 });
+  }, { level: Level.none });
 }

@@ -2,11 +2,12 @@ import { spawn } from 'child_process';
 import { stringifyStream } from './stringify';
 import { deserialize, serialize } from './serialize';
 
-
 export const KEY_VALUE_SEPARATOR = ':';
 export const NEW_LINE_SEPARATOR = '\n';
 
-export type Trailer = Record<string, string>;
+export type Trailer = {
+  [name: string]: string,
+};
 
 export type Commit = {
   author: string,

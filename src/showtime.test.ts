@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { Config } from './config';
+import type { Config } from './config';
 import { showtime } from './showtime';
 
 const config: Config = {
@@ -34,9 +34,9 @@ Object {
       "Type": "fix",
     },
   },
+  "level": "major",
   "modifier": "Breaking-Change",
-  "name": "major",
-  "value": 100,
+  "modifierContent": "This will remove the ability to use the fix",
 }
 `);
   });

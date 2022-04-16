@@ -1,7 +1,9 @@
 import { describe, expect, it } from '@jest/globals';
 import { createHash } from 'crypto';
 import { findExpectation } from './expectations';
-import { Commit } from './commits';
+import type { Commit } from './commits';
+import type { Config } from './config';
+import { Level } from './config';
 
 const hash = createHash('sha256')
   .update('commit')
@@ -18,19 +20,6 @@ function createCommit({ subject = '', trailers = {} }): Commit {
     trailers,
   };
 }
-
-const config = {
-  types: {
-    feature: 'minor',
-    fix: 'patch',
-    documentation: 'none',
-  },
-  modifiers: {
-    'Breaking-Change': 'major',
-  },
-  repoPath: '',
-} as const;
-
 
 const documentationCommit = createCommit({
   subject: 'Fix feature',
@@ -66,9 +55,20 @@ const noTypeCommit = createCommit({
   trailers: {},
 });
 
+const config: Config = {
+  types: {
+    feature: Level.minor,
+    fix: Level.patch,
+    documentation: Level.none,
+  },
+  modifiers: {
+    'Breaking-Change': Level.major,
+  },
+  repoPath: '',
+};
 
 describe(findExpectation.name, () => {
-  it('should no expectation by default', async () => {
+  it('should have no expectation by default', async () => {
     const expectation = await findExpectation([], {
       types: {},
       modifiers: {},
@@ -76,12 +76,11 @@ describe(findExpectation.name, () => {
     });
 
     expect(expectation).toStrictEqual({
-      name: 'none',
-      value: 0,
+      level: Level.none,
     });
   });
 
-  it('should have no expectation there is no trailers', async () => {
+  it('should have no expectation if there are no trailers', async () => {
     const commits = [
       noTypeCommit,
     ];
@@ -89,8 +88,7 @@ describe(findExpectation.name, () => {
     const expectation = await findExpectation(commits, config);
 
     expect(expectation).toStrictEqual({
-      name: 'none',
-      value: 0,
+      level: Level.none,
     });
   });
 
@@ -103,8 +101,7 @@ describe(findExpectation.name, () => {
     const expectation = await findExpectation(commits, config);
 
     expect(expectation).toStrictEqual({
-      name: 'none',
-      value: 0,
+      level: Level.none,
     });
   });
 
@@ -119,8 +116,7 @@ describe(findExpectation.name, () => {
 
     expect(expectation).toStrictEqual({
       commit: fixCommit,
-      name: 'patch',
-      value: 1,
+      level: Level.patch,
     });
   });
 
@@ -136,8 +132,7 @@ describe(findExpectation.name, () => {
 
     expect(expectation).toStrictEqual({
       commit: featureCommit,
-      name: 'minor',
-      value: 10,
+      level: Level.minor,
     });
   });
 
@@ -154,13 +149,9 @@ describe(findExpectation.name, () => {
 
     expect(expectation).toStrictEqual({
       commit: breakingFixCommit,
-      name: 'major',
+      level: Level.major,
       modifier: 'Breaking-Change',
-      value: 100,
+      modifierContent: 'Need to fix feature',
     });
-
-    const description = expectation.modifier ? expectation.commit?.trailers[expectation.modifier] : '';
-
-    expect(description).toBe('Need to fix feature');
   });
 });

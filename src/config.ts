@@ -1,16 +1,29 @@
+/* eslint-disable @typescript-eslint/no-redeclare */
 export const Level = {
-  major: 100,
-  minor: 10,
-  patch: 1,
-  none: 0,
+  major: 'major',
+  minor: 'minor',
+  patch: 'patch',
+  none: 'none',
 } as const;
+export type Level = typeof Level[keyof typeof Level];
 
-export type LevelName = keyof typeof Level;
-export type LevelValue = typeof Level[LevelName];
+export const LevelValue = {
+  [Level.major]: 3,
+  [Level.minor]: 2,
+  [Level.patch]: 1,
+  [Level.none]: 0,
+} as const;
+export type LevelValue = typeof LevelValue[keyof typeof LevelValue];
 
 export type Config = {
-  types: Record<string, LevelName>,
-  modifiers?: Record<string, LevelName | undefined>,
-  packages?: Record<string, string>,
+  types: {
+    [type: string]: Level,
+  },
+  modifiers?: {
+    [modifier: string]: Level,
+  },
+  packages?: {
+    [packageName: string]: string,
+  },
   repoPath?: string,
 };

@@ -1,7 +1,6 @@
 import type { Commit, Trailer } from './commits';
-import { Level } from './config';
 import type { Config } from './config';
-import { LevelValue } from './config';
+import { LevelValue, Level } from './config';
 
 export type Expectation = {
   level: Level,
